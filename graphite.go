@@ -265,6 +265,7 @@ func sanitize(s string) string {
 		s = s[:labelKeySizeLimit]
 	}
 	s = strings.Map(sanitizeRune, s)
+	// Fake commit
 	if unicode.IsDigit(rune(s[0])) {
 		s = "key_" + s
 	}
