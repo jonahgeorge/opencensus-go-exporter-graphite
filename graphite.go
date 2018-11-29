@@ -265,7 +265,6 @@ func sanitize(s string) string {
 		s = s[:labelKeySizeLimit]
 	}
 	s = strings.Map(sanitizeRune, s)
-	// Fake commit
 	if unicode.IsDigit(rune(s[0])) {
 		s = "key_" + s
 	}
@@ -277,7 +276,8 @@ func sanitize(s string) string {
 
 // sanitizeRune converts anything that is not a letter or digit to an underscore
 func sanitizeRune(r rune) rune {
-	if unicode.IsLetter(r) || unicode.IsDigit(r) {
+	// https://graphite.readthedocs.io/en/latest/feeding-carbon.html#step-1-plan-a-naming-hierarchy
+	if unicode.IsLetter(r) || unicode.IsDigit(r) || r == `.` || r == `-` {
 		return r
 	}
 	// Everything else turns into an underscore
