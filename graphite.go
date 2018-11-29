@@ -277,7 +277,7 @@ func sanitize(s string) string {
 // sanitizeRune converts anything that is not a letter or digit to an underscore
 func sanitizeRune(r rune) rune {
 	// https://graphite.readthedocs.io/en/latest/feeding-carbon.html#step-1-plan-a-naming-hierarchy
-	if unicode.IsLetter(r) || unicode.IsDigit(r) || r == `.` || r == `-` {
+	if unicode.IsLetter(r) || unicode.IsDigit(r) || r == '.' || r == '-' {
 		return r
 	}
 	// Everything else turns into an underscore
